@@ -22,11 +22,12 @@ function coordinates(){
 			parseInt($("#selection_scatterplot_2").val()));
 }
 
-function draw_points(svg){
+function draw_points(s){
 	if(selected_points.length > 0){
 		var color = d3.scale.linear().domain([1, 156]).range(["brown", "steelblue"]);
 
-		svg.selectAll(".dot").style("fill", function(d) {
+		console.log("entrou");
+		s.selectAll(".dot").style("fill", function(d) {
 			return (isPoint(d.id)) ? color(d.class) : "#CCC";
 		});
 	}
