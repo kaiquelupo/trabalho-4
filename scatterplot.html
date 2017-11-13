@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sistema Visual de Análise</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" type="text/css" href="./scatterplot-pca.css" id="scatterplot-css">
+    <link rel="stylesheet" type="text/css" href="./scatterplot-dataset.css" id="scatterplot-css">
+    <link rel="stylesheet" type="text/css" href="./table-css" id="table-css">
+    <link rel="stylesheet" type="text/css" href="./parallel-coordinates.css" id="parallel-coordinates-css">
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+  </head>
+  <body>
+
+  <!--<div>
+      <iframe src="/loading" id="loading"></iframe>
+  </div>-->
+
+    <div id="menu">
+      <h1 id="selection-title">Escolha uma visualização:</h1>
+      <select id="selection" class="selection">
+        <option value="-1">Selecione</option>
+        <option value="0">Scatterplot do PCA</option>
+        <option value="2">Scatterplot de Atributos</option>
+        <option value="1">Coordenadas Paralelas</option>
+        <option value="3">Tabela</option>
+      </select>
+    </div>
+
+    <div id="scatterplot-pca"></div>
+    <div id="parallel-coordinates"></div>
+    <div id="scatterplot-dataset"></div>
+    <div id="table"></div>
+
+
+    <div id="menu-bottom">
+    <div>
+      <h1 id="selection-title">Escolha as coordenadas</h1>
+      <select id="selection_scatterplot_1" class="selection">
+        <option value="0">Teaching_Rating</option>
+        <option value="1">Inter_Outlook_Rating</option>
+        <option value="2">Research_Rating</option>
+        <option value="3">Citations_Rating</option>
+        <option value="4">Industry_Income_Rating</option>
+        <option value="5">Num_Students</option>
+        <option value="6">Student/Staff_Ratio</option>
+        <option value="7">%_Inter_Students</option>
+        <option value="8"> %_Female_Students</option>
+      </select>
+
+      <select id="selection_scatterplot_2" class="selection">
+        <option value="0">Teaching_Rating</option>
+        <option value="1">Inter_Outlook_Rating</option>
+        <option value="2">Research_Rating</option>
+        <option value="3">Citations_Rating</option>
+        <option value="4">Industry_Income_Rating</option>
+        <option value="5">Num_Students</option>
+        <option value="6">Student/Staff_Ratio</option>
+        <option value="7">%_Inter_Students</option>
+        <option value="8"> %_Female_Students</option>
+      </select>
+      </div>
+      <a href="#1#" onclick="coordinates();">Gerar</a>
+    </div>
+
+  </body>
+
+  <!-- Scripts -->
+  <script src="./scatterplot.js"></script>
+  <script src="./parallel-coordinates.js"></script>
+  <script src="./table.js"></script>
+
+  <!--<script src="/scatterplot-map"></script>-->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="./script.js"></script>
+
+</html>
