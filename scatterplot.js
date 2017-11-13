@@ -112,7 +112,7 @@ function scatterplot(){
 
 
 
-     /* var legend = svg.selectAll(".legend")
+      var legend = svg.selectAll(".legend")
           .data(color.domain())
         .enter().append("g")
           .attr("class", "legend")
