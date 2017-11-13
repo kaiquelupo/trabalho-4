@@ -2,17 +2,22 @@
   <head>
     <meta charset="utf-8">
     <title>Sistema Visual de Análise</title>
+    <!--Fonte usada -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
+    <!-- Estilos -->
     <link rel="stylesheet" type="text/css" href="./style.css">
     <link rel="stylesheet" type="text/css" href="./scatterplot-pca.css" id="scatterplot-css">
     <link rel="stylesheet" type="text/css" href="./scatterplot-dataset.css" id="scatterplot-css">
     <link rel="stylesheet" type="text/css" href="./table.css" id="table-css">
     <link rel="stylesheet" type="text/css" href="./parallel-coordinates.css" id="parallel-coordinates-css">
 
+    <!-- Biblioteca d3.js -->
     <script src="https://d3js.org/d3.v3.min.js"></script>
   </head>
   <body>
 
+    <!-- Menu superior para seleção das diferentes visualizações disponíveis -->
     <div id="menu">
       <h1 id="selection-title">Escolha uma visualização:</h1>
       <select id="selection" class="selection">
@@ -24,12 +29,15 @@
       </select>
     </div>
 
+    <!-- Cada div possui uma das visualizações -->
     <div id="scatterplot-pca"></div>
     <div id="parallel-coordinates"></div>
     <div id="scatterplot-dataset"></div>
     <div id="table"></div>
 
 
+    <!-- Esse menu é usado para a seleção das coordenadas que serão plotadas
+    no scatterplot de atributos -->
     <div id="menu-bottom">
     <div>
       <h1 id="selection-title">Escolha as coordenadas</h1>

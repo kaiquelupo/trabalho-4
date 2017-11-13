@@ -2,35 +2,47 @@ function scatterplot_dataset(first_idx, second_idx){
 
     var svg;
 
+    //Atributos do dataset
     var data_params = ["Teaching_Rating", "Inter_Outlook_Rating", "Research_Rating",
                    "Citations_Rating", "Industry_Income_Rating", "Num_Students",
                    "Student/Staff_Ratio", "%_Inter_Students", "%_Female_Students"];
 
+    //Tamanho e margem da cena.
     var margin = {top: 20, right: 20, bottom: 80, left: 40},
         width = (window.innerWidth-20) - margin.left - margin.right,
         height = (window.innerHeight-20) - margin.top - margin.bottom;
 
+    //Modo com o qual o eixo x varia.
     var x = d3.scale.linear()
         .range([0, width]);
 
+    //Modo com o qual o eixo y varia.
     var y = d3.scale.linear()
         .range([height, 0]);
 
+    //Escala de cor para os pontos que serão plotados. Essa escala vai do valor 1
+    //ao 156 pois as posições do ranking variam dentro deste intervalo.
     var color = d3.scale.linear().domain([1, 156]).range(["brown", "steelblue"]);
 
+    //Configuração para o eixo x aparecer na parte de baixo.
     var xAxis = d3.svg.axis()
         .scale(x).orient("bottom");
 
+    //Configuração para o eixo y aparecer na parte no lado esquerdo.
     var yAxis = d3.svg.axis()
         .scale(y).orient("left");
 
+    //Remove qualquer svg criado anteriormente nesta div.
     d3.select("#scatterplot-dataset").selectAll("svg").remove();
+
+    //Cria um svg nesta div.
     svg = d3.select("#scatterplot-dataset").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    //Lê o arquivo tsv e constroi o gráfico
     d3.tsv("dataset.tsv", function(error, data) {
       if (error) throw error;
 

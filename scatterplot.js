@@ -2,31 +2,42 @@ function scatterplot(){
 
     var svg;
 
+    //Tamanho e margem da cena.
     var margin = {top: 20, right: 20, bottom: 80, left: 40},
         width = (window.innerWidth-20) - margin.left - margin.right,
         height = (window.innerHeight-20) - margin.top - margin.bottom;
 
+    //Modo com o qual o eixo x varia.
     var x = d3.scale.linear()
         .range([0, width]);
 
+    //Modo com o qual o eixo y varia.
     var y = d3.scale.linear()
         .range([height, 0]);
 
+    //Escala de cor para os pontos que serão plotados. Essa escala vai do valor 1
+    //ao 156 pois as posições do ranking variam dentro deste intervalo.
     var color = d3.scale.linear().domain([1, 156]).range(["brown", "steelblue"]);
 
+    //Configuração para o eixo x aparecer na parte de baixo.
     var xAxis = d3.svg.axis()
         .scale(x).orient("bottom");
 
+    //Configuração para o eixo y aparecer na parte no lado esquerdo.
     var yAxis = d3.svg.axis()
         .scale(y).orient("left");
 
+    //Remove qualquer svg criado anteriormente nesta div.
     d3.select("#scatterplot-pca").selectAll("svg").remove();
+
+    //Cria um svg nesta div.
     svg = d3.select("#scatterplot-pca").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    //Lê o arquivo tsv e constroi o gráfico
     d3.tsv("pca.tsv", function(error, data) {
       if (error) throw error;
 
@@ -108,74 +119,6 @@ function scatterplot(){
           return color(d.class); 
         });
       }
-
-
-
-
-     /* var legend = svg.selectAll(".legend")
-          .data(color.domain())
-        .enter().append("g")
-          .attr("class", "legend")
-          .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-
-      legend.append("rect")
-          .attr("x", width - 18)
-          .attr("width", 18)
-          .attr("height", 18)
-          .style("fill", color);
-
-      legend.append("text")
-          .attr("x", width - 24)
-          .attr("y", 9)
-          .attr("dy", ".35em")
-          .style("text-anchor", "end")
-          .text(function(d) { return d; });*/
-
-          var key = d3.select("#legend")
-    .append("svg")
-    .attr("width", widthLegend)
-    .attr("height", height + margin.top + margin.bottom);
-
-    var legend = key
-    .append("defs")
-    .append("svg:linearGradient")
-    .attr("id", "gradient")
-    .attr("x1", "100%")
-    .attr("y1", "0%")
-    .attr("x2", "100%")
-    .attr("y2", "100%")
-    .attr("spreadMethod", "pad");
-
-    legend
-    .append("stop")
-    .attr("offset", "0%")
-    .attr("stop-color", endColor)
-    .attr("stop-opacity", 1);
-
-    legend
-    .append("stop")
-    .attr("offset", "100%")
-    .attr("stop-color", startColor)
-    .attr("stop-opacity", 1);
-
-    key.append("rect")
-    .attr("width", widthLegend/2-10)
-    .attr("height", height)
-    .style("fill", "url(#gradient)")
-    .attr("transform", "translate(0," + margin.top + ")");
-
-    var y = d3.scale.linear()
-    .range([height, 0])
-    .domain([minValue, maxValue]);
-
-    var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("right");
-
-    key.append("g")
-    .attr("class", "y axis")
-    .attr("transform", "translate(41," + margin.top + ")")
-    .call(yAxis)
 
     });
 }

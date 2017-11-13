@@ -43,22 +43,6 @@ function parallel_coordinates(){
             .on("brush", brush);
      });
 
-      // Add a legend.
-     /* var legend = svg.selectAll("g.legend")
-          .data(species)
-        .enter().append("svg:g")
-          .attr("class", "legend")
-          .attr("transform", function(d, i) { return "translate(0," + (i * 20 + 584) + ")"; });
-
-      legend.append("svg:line")
-          .attr("class", String)
-          .attr("x2", 8);
-
-      legend.append("svg:text")
-          .attr("x", 12)
-          .attr("dy", ".31em")
-          .text(function(d) { return "Iris " + d; });
-    */
       // Add foreground lines.
       foreground = svg.append("svg:g")
           .attr("class", "foreground")
