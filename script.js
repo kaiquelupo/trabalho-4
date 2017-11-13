@@ -1,4 +1,5 @@
 var selected_points = []
+var svgs = []
 
 
 $("#menu-bottom").hide();
@@ -13,15 +14,23 @@ function coordinates(){
 			parseInt($("#selection_scatterplot_2").val()));
 }
 
+function draw_points(svg){
+	svg.selectAll(".dot").style("fill", function(d) {
+		return "#CCC";
+	});
+}
+
 function show(idx){
 
 	if(idx == 2) $("#menu-bottom").show();
 	else $("#menu-bottom").hide();
 
 
-	if(idx == 0 && document.getElementById("scatterplot-pca").innerHTML == "") scatterplot(1);
+	if(idx == 0 && document.getElementById("scatterplot-pca").innerHTML == "") svgs[0] = scatterplot(1);
+	else draw_points(svgs[0]);
   	if(idx == 1 && document.getElementById("parallel-coordinates").innerHTML == "") parallel_coordinates();
-  	if(idx == 2 && document.getElementById("scatterplot-dataset").innerHTML == "") scatterplot(0);
+  	if(idx == 2 && document.getElementById("scatterplot-dataset").innerHTML == "") svgs[1] = scatterplot(0);
+  	else draw_points(svgs[2]);
   	if(idx == 3 && document.getElementById("table").innerHTML == "") table();
 
 

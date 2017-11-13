@@ -1,5 +1,6 @@
 function scatterplot(dataset_idx, first_idx, second_idx){
 
+    var svg;
 
     dataset = ["dataset.tsv", "pca.tsv"];
 
@@ -29,7 +30,7 @@ function scatterplot(dataset_idx, first_idx, second_idx){
         .scale(y).orient("left");
 
     d3.select(div[dataset_idx]).selectAll("svg").remove();
-    var svg = d3.select(div[dataset_idx]).append("svg")
+    svg = d3.select(div[dataset_idx]).append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
@@ -103,7 +104,7 @@ function scatterplot(dataset_idx, first_idx, second_idx){
       // Highlight the selected circles.
       function brush(p) {
         selected_points = [];
-        
+
         var e = brush.extent();
         svg.selectAll(".dot").style("fill", function(d) {
             if(e[0][0] <= d.component1 && d.component1 <= e[1][0]
@@ -148,6 +149,8 @@ function scatterplot(dataset_idx, first_idx, second_idx){
           .text(function(d) { return d; });*/
 
     });
+
+    return svg;
 
 
 }
