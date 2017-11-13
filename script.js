@@ -1,3 +1,6 @@
+var selected_points = []
+
+
 $("#menu-bottom").hide();
 
 $('#selection').on('change', function() {
