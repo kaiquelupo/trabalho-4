@@ -10,7 +10,7 @@ $('#selection').on('change', function() {
 });
 
 function coordinates(){
-	scatterplot(0, parseInt($("#selection_scatterplot_1").val()), 
+	scatterplot_dataset(parseInt($("#selection_scatterplot_1").val()), 
 			parseInt($("#selection_scatterplot_2").val()));
 }
 
@@ -26,10 +26,10 @@ function show(idx){
 	else $("#menu-bottom").hide();
 
 
-	if(idx == 0 && document.getElementById("scatterplot-pca").innerHTML == "") svgs[0] = scatterplot(1);
+	if(idx == 0 && document.getElementById("scatterplot-pca").innerHTML == "") svgs[0] = scatterplot();
 	else draw_points(svgs[0]);
   	if(idx == 1 && document.getElementById("parallel-coordinates").innerHTML == "") parallel_coordinates();
-  	if(idx == 2 && document.getElementById("scatterplot-dataset").innerHTML == "") svgs[1] = scatterplot(0);
+  	if(idx == 2 && document.getElementById("scatterplot-dataset").innerHTML == "") svgs[1] = scatterplot_dataset();
   	else draw_points(svgs[1]);
   	if(idx == 3 && document.getElementById("table").innerHTML == "") table();
 

@@ -1,6 +1,10 @@
-function scatterplot(){
+function scatterplot_dataset(dataset_idx, first_idx, second_idx){
 
     var svg;
+
+    var data_params = ["Teaching_Rating", "Inter_Outlook_Rating", "Research_Rating",
+                   "Citations_Rating", "Industry_Income_Rating", "Num_Students",
+                   "Student/Staff_Ratio", "%_Inter_Students", "%_Female_Students"];
 
     var margin = {top: 20, right: 20, bottom: 80, left: 40},
         width = (window.innerWidth-20) - margin.left - margin.right,
@@ -20,20 +24,20 @@ function scatterplot(){
     var yAxis = d3.svg.axis()
         .scale(y).orient("left");
 
-    d3.select("#scatterplot-pca").selectAll("svg").remove();
-    svg = d3.select("#scatterplot-pca").append("svg")
+    d3.select("#scatterplot-dataset").selectAll("svg").remove();
+    svg = d3.select("#scatterplot-dataset").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    d3.tsv("pca.tsv", function(error, data) {
+    d3.tsv("dataset.tsv", function(error, data) {
       if (error) throw error;
 
 
        data.forEach(function(d) {
-          d.component1 = +d.component1;
-          d.component2 = +d.component2;
+          d.component1 = +d[data_params[first_idx]];
+          d.component2 = +d[data_params[second_idx]];
       });
 
       x.domain(d3.extent(data, function(d) { return d.component1; })).nice();
@@ -48,7 +52,7 @@ function scatterplot(){
           .attr("x", width)
           .attr("y", -6)
           .style("text-anchor", "end")
-          .text("Primeiro Componente");
+          .text(data_params[first_idx]);
 
       svg.append("g")
           .attr("class", "y axis")
@@ -59,7 +63,7 @@ function scatterplot(){
           .attr("y", 6)
           .attr("dy", ".71em")
           .style("text-anchor", "end")
-          .text("Segundo Componente")
+          .text(data_params[second_idx])
 
       svg.selectAll(".dot")
           .data(data)
@@ -112,31 +116,7 @@ function scatterplot(){
         });
       }
 
-
-
-
-     /* var legend = svg.selectAll(".legend")
-          .data(color.domain())
-        .enter().append("g")
-          .attr("class", "legend")
-          .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-
-      legend.append("rect")
-          .attr("x", width - 18)
-          .attr("width", 18)
-          .attr("height", 18)
-          .style("fill", color);
-
-      legend.append("text")
-          .attr("x", width - 24)
-          .attr("y", 9)
-          .attr("dy", ".35em")
-          .style("text-anchor", "end")
-          .text(function(d) { return d; });*/
-
     });
 
     return svg;
-
-
 }
