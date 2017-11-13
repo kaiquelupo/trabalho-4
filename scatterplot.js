@@ -112,7 +112,7 @@ function scatterplot(){
 
 
 
-      var legend = svg.selectAll(".legend")
+     /* var legend = svg.selectAll(".legend")
           .data(color.domain())
         .enter().append("g")
           .attr("class", "legend")
@@ -129,7 +129,14 @@ function scatterplot(){
           .attr("y", 9)
           .attr("dy", ".35em")
           .style("text-anchor", "end")
-          .text(function(d) { return d; });
+          .text(function(d) { return d; });*/
+
+      var legend = key.append("defs").append("svg:linearGradient").attr("id", "gradient").attr("x1", "100%").attr("y1", "0%").attr("x2", "100%").attr("y2", "100%").attr("spreadMethod", "pad");
+
+      legend.append("stop").attr("offset", "0%").attr("stop-color", "#B30000").attr("stop-opacity", 1);
+
+      legend.append("stop").attr("offset", "100%").attr("stop-color", "#FEE8c8").attr("stop-opacity", 1);
+
 
     });
 }
