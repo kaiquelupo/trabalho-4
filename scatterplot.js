@@ -131,5 +131,51 @@ function scatterplot(){
           .style("text-anchor", "end")
           .text(function(d) { return d; });*/
 
+          var key = d3.select("#legend")
+    .append("svg")
+    .attr("width", widthLegend)
+    .attr("height", height + margin.top + margin.bottom);
+
+    var legend = key
+    .append("defs")
+    .append("svg:linearGradient")
+    .attr("id", "gradient")
+    .attr("x1", "100%")
+    .attr("y1", "0%")
+    .attr("x2", "100%")
+    .attr("y2", "100%")
+    .attr("spreadMethod", "pad");
+
+    legend
+    .append("stop")
+    .attr("offset", "0%")
+    .attr("stop-color", endColor)
+    .attr("stop-opacity", 1);
+
+    legend
+    .append("stop")
+    .attr("offset", "100%")
+    .attr("stop-color", startColor)
+    .attr("stop-opacity", 1);
+
+    key.append("rect")
+    .attr("width", widthLegend/2-10)
+    .attr("height", height)
+    .style("fill", "url(#gradient)")
+    .attr("transform", "translate(0," + margin.top + ")");
+
+    var y = d3.scale.linear()
+    .range([height, 0])
+    .domain([minValue, maxValue]);
+
+    var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("right");
+
+    key.append("g")
+    .attr("class", "y axis")
+    .attr("transform", "translate(41," + margin.top + ")")
+    .call(yAxis)
+
     });
 }
