@@ -1,4 +1,4 @@
-function scatterplot_dataset(dataset_idx, first_idx, second_idx){
+function scatterplot_dataset(first_idx, second_idx){
 
     var svg;
 
