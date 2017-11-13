@@ -30,7 +30,7 @@ function show(idx){
 	else draw_points(svgs[0]);
   	if(idx == 1 && document.getElementById("parallel-coordinates").innerHTML == "") parallel_coordinates();
   	if(idx == 2 && document.getElementById("scatterplot-dataset").innerHTML == "") svgs[1] = scatterplot(0);
-  	else draw_points(svgs[2]);
+  	else draw_points(svgs[1]);
   	if(idx == 3 && document.getElementById("table").innerHTML == "") table();
 
 
