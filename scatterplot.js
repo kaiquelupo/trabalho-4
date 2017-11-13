@@ -95,9 +95,6 @@ function scatterplot(){
         svg.selectAll(".dot").style("fill", function(d) {
             if(e[0][0] <= d.component1 && d.component1 <= e[1][0]
                 && e[0][1] <= d.component2 && d.component2 <= e[1][1]){
-
-                selected_points.push(d.id);
-
                 return color(d.class);
               }else{
                 return "#CCC";
@@ -135,8 +132,4 @@ function scatterplot(){
           .text(function(d) { return d; });*/
 
     });
-
-    return svg;
-
-
 }
