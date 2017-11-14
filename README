@@ -1,1 +1,5 @@
 Para acessar a aplicação, entre no site https://kaiquelupo.github.io/trabalho-4/
+
+Para a seleção do método de visualização desejado, um menu na parte
+superior da tela mostra todas as opções. Quando selecionada a opção de scatterplots por atributos, um
+menu inferior é usado para a seleção dos dois atributos que irão compor o scatterplot.
